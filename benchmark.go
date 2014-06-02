@@ -119,7 +119,7 @@ type stringColumn struct {
 }
 
 func main() {
-	configFile := flag.String("config", "benchmark_config.sample.toml", "Config file")
+	configFile := flag.String("config", "benchmark_config.toml", "Config file")
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	flag.Parse()
