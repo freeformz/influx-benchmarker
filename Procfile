@@ -1,1 +1,1 @@
-bench: bin/influx-benchmarker
+bench: while true; do bin/influx-benchmarker; done
