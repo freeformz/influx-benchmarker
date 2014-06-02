@@ -31,7 +31,7 @@ concurrent_connections = 100
 # If you comment out this setting, load will be simulated for as long
 # as the program runs. This is the number of times each load definition will be 
 # run for writes. Queries happen on intervals for as long as the benchmark is running.
-runs_per_load_definition = 10000
+runs_per_load_definition = 1000
 
 [[servers]]
 connection_string = "influxor.ssl.edward.herokudev.com:8086"
