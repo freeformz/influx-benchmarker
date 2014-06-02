@@ -1,0 +1,14 @@
+{
+	"ImportPath": "github.com/heroku/influx-benchmarker",
+	"GoVersion": "go1.2.1",
+	"Deps": [
+		{
+			"ImportPath": "github.com/BurntSushi/toml",
+			"Rev": "50ab0c35d35f5355cee28b0120b18dfbbd13ad36"
+		},
+		{
+			"ImportPath": "github.com/influxdb/influxdb-go",
+			"Rev": "dfbdf27e48710982c058dd1972281951cffd6b29"
+		}
+	]
+}
