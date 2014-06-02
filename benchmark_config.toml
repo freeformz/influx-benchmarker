@@ -64,7 +64,7 @@ name = "write_10_series"
 base_series_name = "some_series"
 
 # the number of time series to create
-series_count = 100
+series_count = 1000
 
   # write settings define write load that will be run against the server
   [load_definitions.write_settings]
@@ -73,7 +73,7 @@ series_count = 100
   batch_series_size = 10
 
   # the number of points per series that will be in each POST
-  batch_points_size = 10
+  batch_points_size = 3
 
   # time to wait between each POST request on each connection.
   # can be like 10u (microseconds), 10ms, 10s
