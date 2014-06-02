@@ -49,16 +49,16 @@ type statsServer struct {
 }
 
 type clusterCredentials struct {
-	Database string `toml:"database"`
-	User     string `toml:"user"`
-	Password string `toml:"password"`
+	Database   string   `toml:"database"`
+	User       string   `toml:"user"`
+	Password   string   `toml:"password"`
+	IsSecure   bool     `toml:"is_secure"`
+	SkipVerify bool     `toml:"skip_verify"`
+	Timeout    duration `toml:"timeout"`
 }
 
 type server struct {
-	ConnectionString string   `toml:"connection_string"`
-	IsSecure         bool     `toml:"is_secure"`
-	SkipVerify       bool     `toml:"skip_verify"`
-	Timeout          duration `toml:"timeout"`
+	ConnectionString string `toml:"connection_string"`
 }
 
 type loadSettings struct {
@@ -169,6 +169,10 @@ type failureResult struct {
 	write        *LoadWrite
 	err          error
 	microseconds int64
+}
+
+func (fr failureResult) String() string {
+	return fmt.Sprintf("%s - %d", fr.err.Error(), fr.microseconds)
 }
 
 type LoadWrite struct {
@@ -398,8 +402,8 @@ func (self *BenchmarkHarness) queryAndReport(loadDef *loadDefinition, q *query, 
 		Database:   self.Config.ClusterCredentials.Database,
 		Username:   self.Config.ClusterCredentials.User,
 		Password:   self.Config.ClusterCredentials.Password,
-		IsSecure:   s.IsSecure,
-		HttpClient: NewHttpClient(s.Timeout.Duration, s.SkipVerify),
+		IsSecure:   self.Config.ClusterCredentials.IsSecure,
+		HttpClient: NewHttpClient(self.Config.ClusterCredentials.Timeout.Duration, self.Config.ClusterCredentials.SkipVerify),
 	}
 	client, err := influxdb.NewClient(clientConfig)
 	if err != nil {
@@ -448,8 +452,8 @@ func (self *BenchmarkHarness) handleWrites(s *server) {
 		Database:   self.Config.ClusterCredentials.Database,
 		Username:   self.Config.ClusterCredentials.User,
 		Password:   self.Config.ClusterCredentials.Password,
-		IsSecure:   s.IsSecure,
-		HttpClient: NewHttpClient(s.Timeout.Duration, s.SkipVerify),
+		IsSecure:   self.Config.ClusterCredentials.IsSecure,
+		HttpClient: NewHttpClient(self.Config.ClusterCredentials.Timeout.Duration, self.Config.ClusterCredentials.SkipVerify),
 	}
 	client, err := influxdb.NewClient(clientConfig)
 	if err != nil {
