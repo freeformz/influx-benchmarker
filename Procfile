@@ -1,1 +1,1 @@
-bench: bin/benchmark
+bench: bin/influx-benchmarker
