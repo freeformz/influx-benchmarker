@@ -77,7 +77,7 @@ series_count = 1000
 
   # time to wait between each POST request on each connection.
   # can be like 10u (microseconds), 10ms, 10s
-  delay_between_posts = "10ms"
+  delay_between_posts = "1s"
 
   # each series in this load definition can have multiple int, string, bool, or float columns.
   [[load_definitions.int_columns]]
